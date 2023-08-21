@@ -1,7 +1,7 @@
 
 node {
    def sonarUrl = 'sonar.host.url=http://192.168.56.112:9000'
-   def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
+   def mvn = tool (name: 'maven', type: 'maven') + '/bin/mvn'
    stage('SCM Checkout'){
     // Clone repo
 	git branch: 'master', 
