@@ -1,19 +1,19 @@
 
 node {
-   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
+   def sonarUrl = 'sonar.host.url=http://192.168.56.112:9000'
    def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
    stage('SCM Checkout'){
     // Clone repo
 	git branch: 'master', 
 	credentialsId: 'github', 
-	url: 'https://github.com/javahometech/myweb'
+	url: 'https://github.com/mbahnaf/test-my-app'
    
    }
    
    stage('Sonar Publish'){
-	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
+	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonar-token')]) {
         def sonarToken = "sonar.login=${sonarToken}"
-        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
+        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonar-token}"
 	 }
       
    }
